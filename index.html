@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Kafana v0.1</title>
+    <meta charset="utf-8"/>
+    <meta name="author" content="Kafana FrontEnd Workshop"/>
+    <meta name="title" content="Kafana">
+    <meta name="description" content="Kafana App – Just an app. :)">
+
+    <!-- Mobile Specific Meta ================================================== -->
+    <meta name="viewport" content="initial-scale=1.0,width=device-width"/>
+
+    <!-- Styles ================================================== -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <!-- Fonts ================================================== -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,700&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+</head>
+
+<body id="index">
+    <div class="pageBody">
+        <header id="top">
+            <div class="navigation">
+                <nav class="navbar navbar-default navbar-main" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                                <i class="fa menu-open fa-bars" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul id="menu-main" class="nav navbar-nav navbar-left nav-top">
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+            </div>
+
+        </header>
+
+        <div class="content">
+            <div class="container">
+                <div id="map" class="map"></div>
+                <div class="objects_data">
+                    <ol class="list-group js-listaKafana">
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="social_bottom">
+                <ul class="social-nav model-2">
+                    <li>
+                        <a class="facebook" href="#" title="Facebook" target="_blank">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="twitter" href="#" title="Twitter" target="_blank">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="google-plus" href="#" title="Google +" target="_blank">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <p class="copyright_text">Copyright &copy; 2017 Kafana.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script id="myTmpl" type="text/x-jsrender">{{:name}}</script>
+</body>
+</html>
