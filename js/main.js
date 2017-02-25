@@ -38,7 +38,7 @@ $(document).ready(function() {
         }
 
         var _getDataBase = new Promise(function(resolve, reject) {
-            var database = firebase.initializeApp(configDatabase);
+            database = firebase.initializeApp(configDatabase);
             database.database().ref('/').once('value').then(function(snapshot) {
                 var result = snapshot.val().dateCode;
                 resolve(result);
@@ -54,10 +54,16 @@ $(document).ready(function() {
 
         function _paintListItems (data) {
             var outputHtml = '';
-            data.forEach(item => {
-                outputHtml += `<li class="list-group-item">${item.name} (${item.address}) <span class="fr"><button class="voteButton">+</button> Glasova: ${item.votes}</span></li>`;
+            data.forEach((item, index) => {
+                outputHtml += `<li class="list-group-item">${item.name} (${item.address}) 
+                    <span class="fr">
+                        <button data-key="${index}" class="voteButton js-voteButton">+</button> 
+                        Glasova: <span class="js-voteHolder">${item.votes}</span>
+                    </span>
+                </li>`;
             });
             $listDiv.html(outputHtml);
+            _addEventListeners();
         }
 
         function _drawMarkers(data) {
@@ -79,6 +85,25 @@ $(document).ready(function() {
                 bounds.extend(allMarkers[i].getPosition());
             }
             mapInstance.fitBounds(bounds);
+        }
+
+        function _addEventListeners() {
+            function handler(e) {
+                $(this).removeClass('js-voteButton');
+                _databaseAddVote($(this).data('key'), $(this).parent().find('.js-voteHolder'));
+            }
+            $listDiv.on('click', '.js-voteButton', handler);
+        }
+
+        function _databaseAddVote (keyInDataBase, $votesHolder) {
+            var key = database.database().ref(`/dateCode/${keyInDataBase}`);
+            key.once('value').then(function(snapshot) {
+                var oldValue = snapshot.val().votes;
+                key.update({
+                    votes: ++oldValue
+                });
+                $votesHolder.text(oldValue);
+            });
         }
 
         return {
